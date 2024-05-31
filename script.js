@@ -1,13 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const quotes = [
-        "I love you not because of who you are, but because of who I am when I am with you.",
-        "Love is composed of a single soul inhabiting two bodies.",
-        "You are my sun, my moon, and all my stars.",
-        "I wish I could turn back the clock. I'd find you sooner and love you longer.",
-        "I need you like a heart needs a beat."
-    ];
+    const quote = "I wish I could turn back the clock. I'd find you sooner and love you longer.";
 
     const quoteElement = document.getElementById('quote');
-    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-    quoteElement.textContent = randomQuote;
+    quoteElement.textContent = quote;
+
+    createHearts();
 });
+
+function createHearts() {
+    const container = document.getElementById('hearts-container');
+
+    setInterval(() => {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.style.left = `${Math.random() * 100}vw`;
+        heart.style.animationDuration = `${2 + Math.random() * 3}s`;
+        container.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 4000);
+    }, 300);
+}
